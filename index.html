@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamburgueria Snatch</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d0d;--card:#181818;--tx:#f2f2f2;--mu:#9a9a9a;--ac:#d4ff2a;--bd:#2a2a2a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:60px}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 Inter,system-ui,sans-serif;padding-bottom:90px}
+h1,h2,.an{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.5px;text-transform:uppercase}
+.hero{padding:36px 18px 22px;background:radial-gradient(circle at 80% 0,#2b3300,transparent 60%);border-bottom:1px solid var(--bd)}
+.hero h1{font-size:clamp(40px,12vw,72px);margin:0;line-height:1}.hero h1 span{color:var(--ac)}
+.hero p{color:var(--mu);margin:8px 0 14px;max-width:520px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--bd);border-radius:20px;padding:5px 12px;font-size:13px;color:var(--mu)}
+.chip b{color:var(--tx)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-bottom:1px solid var(--bd);padding-top:calc(10px + env(safe-area-inset-top,0px))}
+nav a{white-space:nowrap;color:var(--tx);text-decoration:none;border:1px solid var(--bd);border-radius:20px;padding:6px 14px;font-size:14px}
+nav a:active,nav a.on{background:var(--ac);color:#000;border-color:var(--ac)}
+main{max-width:760px;margin:0 auto;padding:0 14px}
+h2{font-size:28px;margin:30px 0 12px;color:var(--ac)}
+.it{display:flex;gap:12px;justify-content:space-between;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:10px}
+.it h3{margin:0 0 3px;font-size:16px}.it p{margin:0;color:var(--mu);font-size:13px}
+.pr{margin-top:8px;font-weight:600}
+.ad{align-self:center;background:var(--ac);color:#000;border:0;border-radius:10px;width:42px;height:42px;font-size:24px;font-weight:700;cursor:pointer;flex:none}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 35%);display:none;z-index:6}
+.bar button{width:100%;max-width:760px;margin:auto;display:flex;justify-content:space-between;background:var(--ac);color:#000;border:0;border-radius:12px;padding:15px 18px;font:600 16px Inter,sans-serif;cursor:pointer}
+.ov{position:fixed;inset:0;background:#000b;z-index:9;display:none;align-items:flex-end;justify-content:center}
+.sh{background:var(--card);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.sh h2{margin:0 0 10px}
+.ln{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
+.q button{background:var(--bd);color:var(--tx);border:0;border-radius:6px;width:28px;height:28px;font-size:16px;cursor:pointer}.q span{display:inline-block;min-width:24px;text-align:center}
+.sh input,.sh select{width:100%;margin-top:8px;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit}
+.tot{display:flex;justify-content:space-between;margin:4px 0;color:var(--mu)}.tot.g{color:var(--tx);font-weight:600;font-size:18px}
+.go{width:100%;margin-top:12px;background:var(--ac);color:#000;border:0;border-radius:12px;padding:15px;font:600 16px Inter,sans-serif;cursor:pointer}
+.go:disabled{opacity:.4}.er{color:#ff7a7a;font-size:13px;margin-top:6px}
+footer{text-align:center;color:var(--mu);font-size:12px;padding:30px 14px}
+.hero{position:relative;overflow:hidden}
+.bg{display:block;width:220px;margin:18px auto 0}
+@media(min-width:760px){.hero>h1,.hero>p{max-width:60%}.bg{position:absolute;right:6%;top:50%;margin:0;transform:translateY(-50%);width:250px}}
+.bg g,.bg path,.bg ellipse,.bg rect{transform-box:fill-box;transform-origin:center}
+.l{opacity:0;animation:drop .8s cubic-bezier(.3,1.6,.5,1) forwards;animation-delay:var(--d)}
+.fl{animation:fl 4s ease-in-out 2.4s infinite}
+.sd{animation:sd 4s ease-in-out 2.4s infinite;opacity:.35}
+.st{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;opacity:0;animation:st 2.8s ease-out infinite;animation-delay:calc(2.2s + var(--d))}
+@keyframes drop{0%{transform:translateY(-260px) rotate(-8deg);opacity:0}40%{opacity:1}100%{transform:none;opacity:1}}
+@keyframes fl{50%{transform:translateY(-8px) rotate(1.2deg)}}
+@keyframes sd{50%{transform:scale(.85);opacity:.2}}
+@keyframes st{0%{opacity:0;transform:translateY(0)}30%{opacity:.45}100%{opacity:0;transform:translateY(-34px)}}
+.it{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s,border-color .2s}.it.v{opacity:1;transform:none}.it:hover{border-color:var(--ac)}
+.ad{transition:transform .15s}.ad:active{transform:scale(.88)}
+@media(prefers-reduced-motion:reduce){.l,.fl,.sd,.st{animation:none!important;opacity:1}.st{opacity:0}.it{opacity:1;transform:none}}
+@media print{.l,.fl,.sd{animation:none!important;opacity:1!important;transform:none!important}.st{display:none}.it{opacity:1!important;transform:none!important;break-inside:avoid}.bar,.ov,nav{display:none!important}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<header class="hero"><h1>Hamburgueria <span>Snatch</span></h1>
+<p>Burgers com nome de movimento de CrossFit, feitos no broiler. Monte seu treino e peça pelo WhatsApp.</p>
+<div class="chips"><div class="chip">⏱ <b>~20 min</b></div><div class="chip">Entrega <b>R$ 9,00</b></div><div class="chip">Pedido mín. <b>R$ 19,90</b></div></div>
+<svg class="bg" viewBox="0 -40 240 260" aria-hidden="true"><ellipse class="sd" cx="120" cy="205" rx="85" ry="9" fill="#000"/>
+<g class="fl"><g class="l" style="--d:0s"><path d="M30 140H210Q210 174 120 174Q30 174 30 140Z" fill="#c97a22"/></g>
+<g class="l" style="--d:.35s"><rect x="22" y="104" width="196" height="32" rx="16" fill="#5a2d17"/><path d="M40 114q30 -6 60 0M130 112q30 -6 60 0" stroke="#7b4325" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+<g class="l" style="--d:.7s"><path d="M26 92H214V100L198 100L188 120L178 100H26Z" fill="#ffc21a"/></g>
+<g class="l" style="--d:1.05s"><path d="M20 84q12 -14 24 0t24 0t24 0t24 0t24 0t24 0t24 0t24 0v8H20Z" fill="#6cc04a"/></g>
+<g class="l" style="--d:1.4s"><path d="M30 78Q30 14 120 14Q210 14 210 78Z" fill="#d98a2b"/><path d="M60 40q20 -18 50 -20" stroke="#f0b25a" stroke-width="6" fill="none" stroke-linecap="round"/><g fill="#fff2c7"><ellipse cx="90" cy="36" rx="5" ry="2.5" transform="rotate(-20 90 36)"/><ellipse cx="125" cy="28" rx="5" ry="2.5"/><ellipse cx="155" cy="42" rx="5" ry="2.5" transform="rotate(25 155 42)"/><ellipse cx="110" cy="54" rx="5" ry="2.5" transform="rotate(10 110 54)"/><ellipse cx="175" cy="62" rx="5" ry="2.5" transform="rotate(-15 175 62)"/><ellipse cx="70" cy="62" rx="5" ry="2.5" transform="rotate(20 70 62)"/></g></g>
+<path class="st" style="--d:0s" d="M95 4q-10 -10 0 -20t0 -20"/><path class="st" style="--d:.9s" d="M125 4q-10 -10 0 -20t0 -20"/><path class="st" style="--d:1.7s" d="M152 4q-10 -10 0 -20t0 -20"/></g></svg></header>
+<nav id="nav"></nav><main id="m"></main>
+<footer>Parceiro: Dust3 CrossFit · Bebidas alcoólicas apenas para maiores de 18 anos.</footer>
+<div class="bar" id="bar"><button onclick="op()"><span id="bn"></span><span id="bt"></span></button></div>
+<div class="ov" id="ov" onclick="if(event.target==this)cl()"><div class="sh" id="sh"></div></div>
+<script>
+const WA="5511999999999",FEE=9,MIN=19.9;
+const D=[
+["Entradinhas",[["Batata Trufada com Parmesão","Canoa aromatizada com azeite trufado e parmesão ralado.",39.9],["Batata com Cheddar e Doritos","Creme de cheddar da casa, farofa de Doritos e parmesão.",29.9],["Batata com Catupiry e Pulled Pork","Catupiry original e porção generosa de pulled pork.",29.9],["Batata Frita Individual","Crocante e sequinha.",8.9],["Batata com Cheddar e Bacon","Creme de cheddar e bacon crocante.",24.9],["Anéis de Cebola","Empanados, crocantes e saborosos.",15],["Queijo Gouda Empanado","6 unidades, cremoso por dentro e crocante por fora.",19.9],["Nuggets Crocantes","6 nuggets de frango empanados.",14.5]]],
+["Burguers",[["Snatch","150g no char broiler, maionese caseira, cheddar e brioche.",27.7],["Overhead Squat","Pão australiano, 150g, cheddar, cebola empanada e barbecue.",29.5],["Burpee","O clássico X-Salada: cheddar, picles, cebola, tomate e alface.",30.99],["Wallwalk","150g, cheddar, picles, barbecue e cebola crispy.",31.9],["Cluster","Cheddar, picles, cebola roxa, ovo frito e bacon crocante.",31.99],["Pull Tasty","Nosso Big Tasty: cheddar, alface, tomate, cebola e molho tasty.",34.9],["Skill","Gorgonzola com mel, rúcula e cebola roxa no pão australiano.",35],["Muscle Up","60g de queijo coalho tostado e maionese mágica.",35.9],["Lunge","Blend com costela, bacon, creme de cheddar e Doritos.",35.9],["Devil Press","Catupiry original maçaricado com maionese.",36],["T2B","Cebola com shoyo, bacon, creme de cheddar e maionese mágica.",37.45],["Handstand Walk","Doce de leite à vontade e um baldinho de bacon.",39],["Snatch Pool","Snatch mergulhado numa piscina de cheddar e bacon.",42.9],["Thruster","2 burguers de 150g, cheddar, ovo e bacon.",47.5]]],
+["Smash",[["Single Under","Smash com bacon crocante, cheddar e maionese caseira.",21.4],["Pull-Up","Smash com crostinha, cheddar, salada e maionese da Snatch.",22.5],["Air Squat","O famoso quarteirão: 2 smash, ketchup, mostarda, cebola roxa e picles.",26.7],["Kipping","2 smash, cebola chapeada com shoyo e cheddar.",27],["Jump Jack","2 smash, cheddar, cebola crispy e barbecue.",28.99],["Big Snatch","2 smash, alface, queijo, molho especial, cebola e picles.",29.9],["Double Under","2 smash, cheddar, maionese verde e bacon.",29.9],["Triple Under","3 smash, cheddar e bacon crocante.",35.99],["Crossover","3 carnes de 70g no pão australiano + potinho de cheddar.",38.99]]],
+["Especiais",[["Rope Climb","Nuggets no lugar do hambúrguer, maionese de alho, alface e cebola roxa.",15.99],["Box Jump","X-Salada de linguiça premium com maionese verde e mussarela.",28.9],["Pistol","Linguiça 130g, cheddar, vinagrete e maionese de alho.",29.99],["Push Chicken","Filé de frango empanado, cheddar, maionese de alho e salada.",31.9]]],
+["Vegetarianos",[["No Rep Snatch","Hambúrguer Fazenda Futuro defumado, cheddar e maionese da casa.",39.99],["No Rep Burpee","Fazenda Futuro, cheddar, alface, tomate, cebola e picles.",41.99],["No Rep Skill","Gorgonzola com mel, rúcula e cebola roxa.",42.99],["No Rep Snatch Pool","Fazenda Futuro numa piscina de cheddar.",43.9]]],
+["Combos",[["Burpee + Batata + Coca 350ml","Clássico 150g com fritas e Coca lata.",48.79],["Snatch + Batata + Refri","Snatch com fritas e refri.",45.5],["Single Under + Batata + Coca","Smash com bacon, fritas e Coca.",39.2],["Double Under + Batata + Refri","2 smash com bacon, fritas e refri.",47.7],["2 Single Under + 2 Fritas + 2 Cocas","Para dividir (ou não).",78.4],["Big Snatch + Thruster + Pull Up + Fritas + Refri","Super combo de 3 burgers.",95]]],
+["Mini Burguers",[["Mini Snatch","O clássico em tamanho mini.",10.9],["Mini Cluster","Com bacon, ovo e picles.",10.9],["Mini T2B","Cebola com shoyo, bacon e cheddar.",10.9],["Mini Single Under","Blend da casa, bacon e cheddar.",8.9],["Mini Big Snatch","Molho especial, alface, picles.",9.9],["Mini Devil Press","Catupiry maçaricado.",10],["Mini Nutella com Morango","Sobremesa em formato de burguer.",9.99],["Mini Galak","Chocolate branco Galak.",9.9]]],
+["Sobremesas",[["Torta de Cookie com Nutella","Massa de cookie com muita Nutella.",29.9],["Cookie de Nutella","Recheio generoso, com pedaços de chocolate.",19.9],["Brownie de Chocolate","Sabor chocolate.",13.9]]],
+["Milk-shakes",[["Milk-shake de Chocolate","Sorvete especial e calda artesanal.",25.9],["Milk-shake de Nutella","Cremoso, com chantilly.",29.9],["Milk-shake de Whisky (+18)","Sorvete de creme, whisky e chantilly.",28.9]]],
+["Molhos",[["Maionese da Casa","",3.5],["Maionese de Alho","",3.5],["Barbecue","",2.5],["Creme de Cheddar","",5.9],["Geleia de Pimenta","Não é picante, é docinha.",5],["Molho Big Tasty","",3.9]]],
+["Bebidas",[["Água 500ml","",6.5],["Água com Gás","",7.5],["Coca-Cola Lata 350ml","",7.9],["Coca-Cola Zero Lata 350ml","",7.9],["Guaraná Antarctica Lata 350ml","",7.9],["Sprite Lata 350ml","",7.9],["H2O Limão 500ml","",9.9]]]];
+const R=n=>"R$ "+n.toFixed(2).replace(".",","),C={};let L=[];
+const nav=document.getElementById("nav"),m=document.getElementById("m");
+D.forEach((c,ci)=>{nav.insertAdjacentHTML("beforeend",`<a href="#c${ci}">${c[0]}</a>`);
+m.insertAdjacentHTML("beforeend",`<h2 id="c${ci}">${c[0]}</h2>`+c[1].map((x,i)=>{const id=ci+"-"+i;L[id]=x;return `<div class="it"><div><h3>${x[0]}</h3>${x[1]?`<p>${x[1]}</p>`:""}<div class="pr">${R(x[2])}</div></div><button class="ad" aria-label="Adicionar" onclick="add('${id}',1)">+</button></div>`}).join(""))});
+function sub(){return Object.entries(C).reduce((s,[k,q])=>s+L[k][2]*q,0)}
+function add(k,d){C[k]=(C[k]||0)+d;if(C[k]<=0)delete C[k];ren()}
+function ren(){const n=Object.values(C).reduce((a,b)=>a+b,0),b=document.getElementById("bar");b.style.display=n?"block":"none";
+document.getElementById("bn").textContent="Ver pedido ("+n+")";document.getElementById("bt").textContent=R(sub());
+if(document.getElementById("ov").style.display=="flex")n?op():cl()}
+function op(){const s=sub(),ok=s>=MIN;
+document.getElementById("sh").innerHTML=`<h2>Seu pedido</h2>`+Object.entries(C).map(([k,q])=>`<div class="ln"><div>${L[k][0]}<br><small style="color:var(--mu)">${R(L[k][2]*q)}</small></div><div class="q"><button onclick="add('${k}',-1)">−</button><span>${q}</span><button onclick="add('${k}',1)">+</button></div></div>`).join("")+
+`<div style="margin-top:12px"><div class="tot"><span>Subtotal</span><span>${R(s)}</span></div><div class="tot"><span>Entrega</span><span>${R(FEE)}</span></div><div class="tot g"><span>Total</span><span>${R(s+FEE)}</span></div></div>
+<input id="nm" placeholder="Seu nome"><input id="ed" placeholder="Endereço com número e bairro"><select id="pg"><option>Pix</option><option>Cartão (maquininha)</option><option>Dinheiro</option></select><input id="ob" placeholder="Observações (opcional)">
+${ok?"":`<div class="er">Pedido mínimo de ${R(MIN)}. Faltam ${R(MIN-s)}.</div>`}
+<button class="go" ${ok?"":"disabled"} onclick="env()">Enviar pelo WhatsApp</button>`;
+document.getElementById("ov").style.display="flex"}
+function cl(){document.getElementById("ov").style.display="none"}
+function env(){const g=id=>document.getElementById(id).value.trim();
+if(!g("nm")||!g("ed")){alert("Informe nome e endereço.");return}
+const t=`*Pedido Snatch*\n`+Object.entries(C).map(([k,q])=>`${q}x ${L[k][0]} - ${R(L[k][2]*q)}`).join("\n")+`\n\nSubtotal: ${R(sub())}\nEntrega: ${R(FEE)}\n*Total: ${R(sub()+FEE)}*\n\nNome: ${g("nm")}\nEndereço: ${g("ed")}\nPagamento: ${document.getElementById("pg").value}${g("ob")?"\nObs: "+g("ob"):""}`;
+window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank")}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("v");io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll(".it").forEach(e=>io.observe(e));
+</script></body></html>
